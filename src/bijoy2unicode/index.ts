@@ -22,25 +22,15 @@ const bijoyConverter = (text: string): string => {
   while (i < text.length) {
     let char = text[i];
     let nextChar = text[i + 1] || "";
-    let found = false;
 
     for (const mapping of mappings) {
       if (mapping.key === char + nextChar) {
         convertedText += mapping.value;
         i += 2;
-        found = true;
-        break;
       } else if (mapping.key === char) {
         convertedText += mapping.value;
         i += 1;
-        found = true;
-        break;
       }
-    }
-
-    if (!found) {
-      convertedText += char;
-      i += 1;
     }
   }
 
@@ -57,25 +47,15 @@ export default function BijoyToUnicode(text: string): string {
     const char = text[i];
     const nextChar = text[i + 1];
 
-    let found = false;
-
     for (const mapping of mappings) {
       if (mapping.key === nextChar) {
         remappingText += char + nextChar;
         i++;
-        found = true;
-        break;
       } else if (mapping.key === char) {
         remappingText += nextChar;
         remappingText += char;
         i++;
-        found = true;
-        break;
       }
-    }
-
-    if (!found) {
-      remappingText += char;
     }
   }
 

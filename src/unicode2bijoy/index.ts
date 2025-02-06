@@ -22,26 +22,16 @@ const unicodeConverter = (text: string): string => {
   while (i < text.length) {
     let char = text[i];
     let nextChar = text[i + 1] || "";
-    let found = false;
 
     // Handle joined alphabets
     for (const mapping of mappings) {
       if (mapping.key === char + nextChar) {
         convertedText += mapping.value;
         i += 2;
-        found = true;
-        break;
       } else if (mapping.key === char) {
         convertedText += mapping.value;
         i++;
-        found = true;
-        break;
       }
-    }
-
-    if (!found) {
-      convertedText += char;
-      i++;
     }
   }
 
@@ -51,33 +41,24 @@ const unicodeConverter = (text: string): string => {
 export default function UnicodeToBijoy(text: string): string {
   const mappings = mappingMap.map(([k, v]) => ({ key: v, value: k }));
 
-  let remappingText = "";
+  var remappingText = '';
 
-  // Bijoy to Unicode remapping
-  for (let i = 0; i < text.length; i++) {
-    const char = text[i];
-    const nextChar = text[i + 1];
-    let found = false;
+	// Bijoy to Unicode remapping
+	for (let i = 0; i < text.length; i++) {
+		const char = text[i];
+		const nextChar = text[i + 1];
 
-    for (const mapping of mappings) {
-      if (mapping.key === nextChar) {
-        remappingText += char + nextChar;
-        i++;
-        found = true;
-        break;
-      } else if (mapping.key === char) {
-        remappingText += nextChar;
-        remappingText += char;
-        i++;
-        found = true;
-        break;
-      }
-    }
-
-    if (!found) {
-      remappingText += char;
-    }
-  }
+		if (mappings.some(m => m.key === nextChar)) {
+			remappingText += char + nextChar;
+			i++;
+		} else if (mappings.some(m => m.key === char)) {
+			remappingText += nextChar;
+			remappingText += char;
+			i++;
+		} else {
+			remappingText += char;
+		}
+	}
 
   return unicodeConverter(remappingText);
 }
