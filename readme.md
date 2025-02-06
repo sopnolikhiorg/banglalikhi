@@ -1,6 +1,6 @@
-# NPM Package Introduction
+# Bangla Likhi - Bengali Text Converter
 
-Welcome to the NPM Package Introduction! This README will guide you through the basics of using and understanding this package.
+A robust Bengali text conversion library for converting between Unicode and Bijoy keyboard layouts, with support for numbers, symbols, and joined characters.
 
 ## Installation
 
@@ -12,35 +12,42 @@ npm install bangla-likhi
 
 ## Usage
 
-Here is a simple example of how to use the package:
-
 ```javascript
-const banglalikhi = require("bangla-likhi");
+import { UnicodeToBijoy, BijoyToUnicode } from 'bangla-likhi';
+
+// Convert Unicode (Avro) to Bijoy
+const bijoyText = UnicodeToBijoy('আমি বাংলায় গান গাই'); 
+
+// Convert Bijoy to Unicode
+const unicodeText = BijoyToUnicode('Avwg evsjvq MvB');
 ```
 
-## Features
+## Key Features
 
-- Feature 1: Description of feature 1.
-- Feature 2: Description of feature 2.
-- Feature 3: Description of feature 3.
+- ᱩᱭᱩᱝᱩᱭᱩᱝ Unicode ↔ Bijoy conversion with full accuracy
+- Automatic handling of:
+  - Composite characters and vowel signs
+  - Bengali numerals and symbols
+  - Special joined characters (যুক্তাক্ষর)
+- Comprehensive support for both modern and legacy Bijoy layouts
+- TypeScript support included
+
+## Documentation
+
+Full documentation and character mapping details available at:  
+[docs](./docs)
 
 ## Contributing
 
-We welcome contributions! Please follow these steps to contribute:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Make your changes.
-4. Commit your changes (`git commit -am 'Add new feature'`).
-5. Push to the branch (`git push origin feature-branch`).
-6. Create a new Pull Request.
+Please follow standard GitHub workflow. Report issues for:
+- Character mapping discrepancies
+- Conversion edge cases
+- Performance improvements
 
 ## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+MIT © [Bangla Likhi Team](https://banglalikhi.com)
 
 ## Contact
-
-For any questions or feedback, please open an issue or contact us at [hello@banglalikhi.com](mailto:hello@banglalikhi.com).
+Email: [hello@banglalikhi.com](mailto:hello@banglalikhi.com)
 
 Thank you for using our package!
